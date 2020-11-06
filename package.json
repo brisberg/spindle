@@ -1,0 +1,24 @@
+{
+  "name": "@brisberg/twine-builder",
+  "version": "0.1.0",
+  "description": "Opinionated Build Tool for Twine and Tweego",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brisberg/twine-builder.git"
+  },
+  "keywords": [
+    "twine",
+    "tweego",
+    "twine2"
+  ],
+  "author": "Brandon Risberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brisberg/twine-builder/issues"
+  },
+  "homepage": "https://github.com/brisberg/twine-builder#readme"
+}
