@@ -20,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/brisberg/twine-builder/issues"
   },
-  "homepage": "https://github.com/brisberg/twine-builder#readme"
+  "homepage": "https://github.com/brisberg/twine-builder#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  }
 }
