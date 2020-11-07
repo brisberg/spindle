@@ -1,0 +1,14 @@
+:: StoryTitle
+Example story
+
+:: StoryData
+{
+	"ifid": "F546AE48-0F22-44DB-8A69-D78C7F6897D5",
+	"format": "SugarCube",
+	"format-version": "2.31.1",
+	"start": "Entrance",
+	"zoom": 1
+}
+
+:: Entrance
+Starting Example Game!

@@ -1,0 +1,1 @@
+window.HEADER = "javascript"
