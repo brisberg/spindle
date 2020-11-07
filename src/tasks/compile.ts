@@ -1,0 +1,30 @@
+import {exec} from 'child_process';
+import {task} from 'gulp';
+import Undertaker from 'undertaker';
+import {DEFAULT_OUT_DIR, TwineBuilderConfig} from '../config';
+
+/** Clear Task removes all files from the out directory **/
+export default function compile(
+    config: TwineBuilderConfig,
+    outdir = DEFAULT_OUT_DIR): Undertaker.TaskFunction {
+  return tweego(config, outdir);
+}
+
+/** Execute the Tweego compiler in a child process */
+function tweego(
+    config: TwineBuilderConfig, outdir: string): Undertaker.TaskFunction {
+  return (done: (error?: any) => void) => {
+    const deps: string[] = [].concat(config.deps)
+    const cmd = `tweego --log-files -l \
+    --format=${config.format} \
+    --head=output/head-content.html \
+    -o ${outdir}/${config.id}.html \
+    ${deps.join(' ')}
+    `;
+    exec(cmd, function(err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+      done(err);
+    });
+  }
+}

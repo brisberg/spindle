@@ -53,4 +53,8 @@ export function parseConfig(data: any) {
     header: data.header || defaultConfig.header,
     deps: data.deps || defaultConfig.deps,
   };
-}
+};
+
+// Default constants
+export const DEFAULT_OUT_DIR = './output';
+export const DEFAULT_CONFIG_PATH = './example-game/config.yml';
