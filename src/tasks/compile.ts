@@ -1,5 +1,4 @@
 import {exec} from 'child_process';
-import {task} from 'gulp';
 import Undertaker from 'undertaker';
 import {DEFAULT_OUT_DIR, TwineBuilderConfig} from '../config';
 
@@ -15,13 +14,13 @@ function tweego(
     config: TwineBuilderConfig, outdir: string): Undertaker.TaskFunction {
   return (done: (error?: any) => void) => {
     const deps: string[] = [].concat(config.deps)
-    const cmd = `tweego --log-files -l \
+    const cmd = `go run github.com/tmedwards/tweego --log-files -l \
     --format=${config.format} \
-    --head=output/head-content.html \
+    --head=${outdir}/head-content.html \
     -o ${outdir}/${config.id}.html \
     ${deps.join(' ')}
     `;
-    exec(cmd, function(err, stdout, stderr) {
+    exec(cmd, (err, stdout, stderr) => {
       console.log(stdout);
       console.log(stderr);
       done(err);

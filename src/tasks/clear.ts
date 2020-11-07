@@ -1,4 +1,4 @@
-import {series, src, task} from 'gulp';
+import {src} from 'gulp';
 import clean from 'gulp-clean';
 import Undertaker from 'undertaker';
 import {DEFAULT_OUT_DIR} from '../config';

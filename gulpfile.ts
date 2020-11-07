@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import {series, task} from 'gulp';
+import {series} from 'gulp';
 import * as yaml from 'js-yaml';
 
 import {DEFAULT_CONFIG_PATH, DEFAULT_OUT_DIR, parseConfig, TwineBuilderConfig} from './src/config';
@@ -7,10 +7,13 @@ import clearTask from './src/tasks/clear'
 import compileTask from './src/tasks/compile';
 import generateHeader from './src/tasks/header';
 
+const argv = require('minimist')(process.argv.slice(2));
+console.log(argv)
+const configPath = argv['c'] || DEFAULT_CONFIG_PATH;
 let config: TwineBuilderConfig|null = null;
 
 try {
-  let fileContents = fs.readFileSync(DEFAULT_CONFIG_PATH, 'utf8');
+  let fileContents = fs.readFileSync(configPath, 'utf8');
   const data = yaml.safeLoad(fileContents);
   config = parseConfig(data);
 } catch (e) {

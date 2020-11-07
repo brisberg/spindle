@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "cli": "cli.js",
-    "gulp": "gulpfile.js"
+    "cli": "./cli.js",
+    "gulp": "./gulpfile.js"
   },
   "repository": {
     "type": "git",
@@ -40,7 +40,8 @@
     "gulp-footer": "^2.0.2",
     "gulp-header": "^2.0.9",
     "gulp-if": "^3.0.0",
-    "js-yaml": "^3.14.0"
+    "js-yaml": "^3.14.0",
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
     "ts-node": "^9.0.0",
