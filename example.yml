@@ -1,0 +1,10 @@
+id: "cellar-crawl"
+version: "1.0.0"
+title: "Cellar Crawl"
+description: "Explore the dark cellar beneith a creepy house to discover its secret."
+head:
+  - "shared/analytics/header/analytics.html"
+  - "src/**/header/**/*.html"
+deps:
+  - "games/cellar-crawl"
+  - "shared/analytics/js"

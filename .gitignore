@@ -1,2 +1,8 @@
 # NPM dependencies
 node_modules/
+
+# Built output
+output/
+
+# Logs
+yarn-error.log
