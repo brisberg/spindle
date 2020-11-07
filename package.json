@@ -2,9 +2,13 @@
   "name": "@brisberg/twine-builder",
   "version": "0.1.0",
   "description": "Opinionated Build Tool for Twine and Tweego",
-  "main": "index.js",
+  "main": "gulpfile.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "cli": "cli.js",
+    "gulp": "gulpfile.js"
   },
   "repository": {
     "type": "git",
