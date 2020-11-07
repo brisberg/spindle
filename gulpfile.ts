@@ -11,7 +11,7 @@ import * as yaml from 'js-yaml';
 
 import {parseConfig, TwineBuilderConfig} from './config';
 
-const DEFAULT_OUT_DIR = 'output';
+const DEFAULT_OUT_DIR = './output';
 const DEFAULT_CONFIG_PATH = './example-game/config.yml';
 
 let config: TwineBuilderConfig|null = null;
@@ -32,8 +32,10 @@ function isJavaScript(file) {
 /** Concatinates all js and html files for the given glob into single html. */
 function concatHeaderFile(
     glob: string|string[], outdir = DEFAULT_OUT_DIR): NodeJS.ReadWriteStream {
-  return src(glob, {allowEmpty: true})
-      .pipe(filter('*.[js, html]'))
+  const globs = ['header/builder.html'].concat(glob);
+  console.log(globs);
+  return src(glob)
+      .pipe(filter('*', {debug: true}))
       // Wrap naked js files in <script> tags when appended to the header
       .pipe(gulpif(isJavaScript, header('<script>\n')))
       .pipe(gulpif(isJavaScript, footer('</script>')))
@@ -41,7 +43,7 @@ function concatHeaderFile(
       .pipe(dest(outdir));
 }
 
-function build(): NodeJS.ReadWriteStream {
+export function build(): NodeJS.ReadWriteStream {
   return concatHeaderFile(config.header || []);
 }
 build.displayName = 'Build';
@@ -51,6 +53,7 @@ function tweego(done: (error?: any) => void) {
   const deps: string[] = [].concat(config.deps)
   const cmd = `tweego --log-files -l \
   --format=${config.format} \
+  --head=output/head-content.html \
   -o dist/game.html \
   ${deps.join(' ')}
   `
@@ -61,12 +64,12 @@ function tweego(done: (error?: any) => void) {
   });
 }
 
-function defaultTask(): NodeJS.ReadWriteStream {
-  return src(DEFAULT_CONFIG_PATH).pipe(dest('./output/'));
-}
+// function defaultTask(): NodeJS.ReadWriteStream {
+//   return src(DEFAULT_CONFIG_PATH).pipe(dest('./output/'));
+// }
 
 function clear(): NodeJS.ReadWriteStream {
   return src(DEFAULT_OUT_DIR, {read: false, allowEmpty: true}).pipe(clean());
 }
 
-export default series(clear, defaultTask, build, tweego);
+export default series(clear, build, tweego);

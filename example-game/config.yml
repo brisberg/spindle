@@ -4,7 +4,7 @@ title: "Cellar Crawl"
 format: "sugarcube-2.31.1"
 description: "Explore the dark cellar beneith a creepy house to discover its secret."
 header:
-  - "shared/analytics/header/analytics.html"
-  - "example-game/**/header/**/*"
+  # - "shared/analytics/header/analytics.html"
+  - "example-game/header/**/*"
 deps:
   - "example-game/src"
