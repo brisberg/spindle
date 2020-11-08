@@ -57,4 +57,4 @@ export function parseConfig(data: any) {
 
 // Default constants
 export const DEFAULT_OUT_DIR = './output';
-export const DEFAULT_CONFIG_PATH = './config.yml';
+export const DEFAULT_CONFIG_PATH = './spindle.yml';
