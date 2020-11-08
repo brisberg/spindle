@@ -19,7 +19,7 @@ function concatHeaderFile(
     glob: string|string[], outdir: string): Undertaker.TaskFunction {
   return () => {
     // Append twine-builder standard headers
-    const globs = [`${__dirname}/../../header/*`].concat(glob);
+    const globs = [`${__dirname}/../../../header/*`].concat(glob);
 
     return src(globs)
         .pipe(filter('**/*.{js,html}'))
