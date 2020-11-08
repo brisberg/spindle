@@ -7,7 +7,7 @@ import header from 'gulp-header';
 import gulpif from 'gulp-if';
 import Undertaker from 'undertaker';
 
-import {DEFAULT_OUT_DIR, TwineBuilderConfig} from '../config';
+import {DEFAULT_OUT_DIR, SpindleConfig} from '../config';
 
 /** Check if file extension is '.js' */
 function isJavaScript(file) {
@@ -33,7 +33,7 @@ function concatHeaderFile(
 }
 
 /** Concatinates all js and html files for the given glob into single html. */
-export default (globs: TwineBuilderConfig['header'], outdir = DEFAULT_OUT_DIR):
+export default (globs: SpindleConfig['header'], outdir = DEFAULT_OUT_DIR):
     Undertaker.TaskFunction => {
   // Create output dir
   if (!fs.existsSync(outdir)) {

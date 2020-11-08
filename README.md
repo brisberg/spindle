@@ -1,23 +1,25 @@
-# twine-builder
-WIP Project porting my opinionated twine builder to a modular system.
+# Spindle
 
-Reimplementing as a Gulp Task
+Opinionated Build Tool for building [Twine Games](https://twinery.org/).
 
-Possible ideas for name of this project:
+Powered by [Gulp](https://gulpjs.com/) and [Tweego](https://github.com/tmedwards/tweego).
 
-  - `entwine`: The verb of wrapping something in twine, meshing things together
-  - `spindle`: Metal spike used to pull loose wool in to yarn or twine
+## Install
 
+```bash
+npm install -D @brisberg/spindle
+# or
+yarn add -D @brisberg/spindle
+```
 
-Update:
+## Usage
 
-So this actually is possible. You can invoke gulp from outside the package and use it's gulp file. I will need to provide the transpiled sources, running the gulpfile.ts really isn't going to work.
+If your repo is formatted correctly, add a `spindle.yml` file to your repo root. See [config.yml](https://github.com/brisberg/spindle/blob/main/config.yml) for an example.
 
-I need to add something to make sure Tweego is on the path. Maybe a test command.
-For some reason this was different in my two shells.
+Build with a simple:
 
-When you invoke gulp, you can pass it `--cwd .` which will force it to treat your project directory (not the node_module directory) as the root.
-
-Clean appears to be remove the output directory for some reason. Tweego fails if the output directory doesn't exist, as I suppose it can't perform those actions on it's own. This wasn't required before, when generateHeader would create the output dir.
-
-Still need to make sure that the headerfile is being created.
+```bash
+npx spindle
+# or
+yarn run spindle
+```

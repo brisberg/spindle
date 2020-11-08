@@ -1,8 +1,8 @@
 /**
- * TwineBuilderConfig describes all configuration options for TwineBuilder.
+ * SpindleConfig describes all configuration options for TwineBuilder.
  * config.yml must conform to this structure.
  */
-export interface TwineBuilderConfig {
+export interface SpindleConfig {
   /**
    * Project slug used for urls and directories.
    * Only use [a-Z][0-9]- characters.
@@ -25,7 +25,7 @@ export interface TwineBuilderConfig {
   deps: string|string[];
 }
 
-const defaultConfig: TwineBuilderConfig = {
+const defaultConfig: SpindleConfig = {
   id: 'my-game',
   version: '0.1.0',
   title: 'My Game',

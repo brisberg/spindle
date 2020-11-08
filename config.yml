@@ -1,10 +1,9 @@
-id: "cellar-crawl"
+id: "example-spindle-game"
 version: "1.0.0"
-title: "Cellar Crawl"
+title: "Example Spindle Game"
 format: "sugarcube-2.31.1"
-description: "Explore the dark cellar beneith a creepy house to discover its secret."
+description: "This is a sample spindle Twine Project."
 header:
-  # - "shared/analytics/header/analytics.html"
   - "example-game/header/**/*"
 deps:
   - "example-game/src"
