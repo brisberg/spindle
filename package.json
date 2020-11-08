@@ -2,13 +2,15 @@
   "name": "@brisberg/twine-builder",
   "version": "0.1.0",
   "description": "Opinionated Build Tool for Twine and Tweego",
-  "main": "gulpfile.ts",
+  "main": "dist/gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist/",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepack": "yarn run clean && yarn run build"
   },
   "bin": {
-    "cli": "./cli.js",
-    "gulp": "./gulpfile.js"
+    "twine-builder": "./dist/cli.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,11 @@
     "twine",
     "tweego",
     "twine2"
+  ],
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "header/**/*.{js,html}"
   ],
   "author": "Brandon Risberg",
   "license": "MIT",
