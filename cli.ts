@@ -5,4 +5,4 @@ process.argv.push('--cwd', '.')
 console.log(process.argv)
 require('./node_modules/.bin/gulp')
 
-console.log("hello from twine-builder cli");
+console.log('hello from twine-builder cli');
