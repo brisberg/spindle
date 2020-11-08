@@ -1,8 +1,13 @@
-#!user/bin/env node
+#!/usr/bin/env node
 
-process.argv.push('-f', './node_modules/@brisberg/twine-builder/gulpfile.js')
-process.argv.push('--cwd', '.')
-console.log(process.argv)
-require('./node_modules/.bin/gulp')
+import cp from 'child_process';
 
-console.log('hello from twine-builder cli');
+const gulpCmd = ` \
+gulp \
+  --cwd . \
+  -f ./node_modules/@brisberg/twine-builder/dist/gulpfile.js \
+`;
+cp.exec(gulpCmd, (err, stdout, stderr) => {
+  console.log(stdout);
+  console.log(stderr);
+});

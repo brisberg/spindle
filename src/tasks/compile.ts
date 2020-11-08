@@ -14,7 +14,7 @@ export default function compile(
 function tweego(
     config: TwineBuilderConfig, outdir: string): Undertaker.TaskFunction {
   return (done: (error?: any) => void) => {
-    const storyformatsPath = path.join(__dirname, '../../storyformats');
+    const storyformatsPath = path.join(__dirname, '../../../storyformats');
     const deps: string[] = [].concat(config.deps);
     const cmd = `\
     export TWEEGO_PATH=${storyformatsPath}

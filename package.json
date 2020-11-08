@@ -1,6 +1,6 @@
 {
   "name": "@brisberg/twine-builder",
-  "version": "0.1.0",
+  "version": "0.1.2-beta",
   "description": "Opinionated Build Tool for Twine and Tweego",
   "main": "dist/gulpfile.js",
   "scripts": {
@@ -16,6 +16,9 @@
     "type": "git",
     "url": "git+https://github.com/brisberg/twine-builder.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "twine",
     "tweego",
@@ -24,10 +27,12 @@
   "files": [
     "dist/**/*.js",
     "dist/**/*.d.ts",
-    "header/**/*.{js,html}"
+    "header/**/*.{js,html}",
+    "storyformats"
   ],
   "author": "Brandon Risberg",
   "license": "MIT",
+  "private": false,
   "bugs": {
     "url": "https://github.com/brisberg/twine-builder/issues"
   },
