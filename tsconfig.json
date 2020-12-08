@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "allowJs": true,
     "declaration": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "outDir": "dist",
   }
 }
