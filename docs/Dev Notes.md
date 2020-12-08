@@ -4,9 +4,8 @@ Reimplementing as a Gulp Task
 
 Possible ideas for name of this project:
 
-  - `entwine`: The verb of wrapping something in twine, meshing things together
-  - `spindle`: Metal spike used to pull loose wool in to yarn or twine
-
+- `entwine`: The verb of wrapping something in twine, meshing things together
+- `spindle`: Metal spike used to pull loose wool in to yarn or twine
 
 Update:
 
@@ -20,3 +19,7 @@ When you invoke gulp, you can pass it `--cwd .` which will force it to treat you
 Clean appears to be remove the output directory for some reason. Tweego fails if the output directory doesn't exist, as I suppose it can't perform those actions on it's own. This wasn't required before, when generateHeader would create the output dir.
 
 Still need to make sure that the headerfile is being created.
+
+Update 12/7/20:
+
+Actually the above is not necessary. Gulp can be invoked programatically by simple requesting and then invoking the task directly. There is no need to execute gulp in a child process.
