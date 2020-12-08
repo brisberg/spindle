@@ -1,6 +1,6 @@
 {
   "name": "@brisberg/spindle",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Opinionated Build Tool for Twine and Tweego",
   "main": "dist/cli.js",
   "scripts": {
