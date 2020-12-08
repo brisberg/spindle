@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 
-import cp from 'child_process';
+import gulp from 'gulp';
+import './gulpfile';
 
-const gulpCmd = ` \
-gulp \
-  --cwd . \
-  -f ./node_modules/@brisberg/spindle/dist/gulpfile.js \
-`;
-cp.exec(gulpCmd, (err, stdout, stderr) => {
-  console.log(stdout);
-  console.log(stderr);
-});
+// Programatically execute gulp task
+// https://github.com/gulpjs/gulp/issues/770#issuecomment-501266124
+gulp.task('spindle')((err: Error) => {
+  if (err) {
+    console.error('Spindle Build failed: ' + err.message);
+    return;
+  }
+
+  console.log('Spindle Build finished');
+  return;
+})

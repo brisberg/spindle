@@ -10,7 +10,7 @@ import Undertaker from 'undertaker';
 import {DEFAULT_OUT_DIR, SpindleConfig} from '../config';
 
 /** Check if file extension is '.js' */
-function isJavaScript(file) {
+function isJavaScript(file: {extname: string;}) {
   return file.extname === '.js';
 }
 

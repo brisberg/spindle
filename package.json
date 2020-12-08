@@ -2,7 +2,7 @@
   "name": "@brisberg/spindle",
   "version": "0.2.1",
   "description": "Opinionated Build Tool for Twine and Tweego",
-  "main": "dist/gulpfile.js",
+  "main": "dist/cli.js",
   "scripts": {
     "clean": "rm -rf dist/",
     "build": "tsc",
