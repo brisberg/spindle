@@ -14,7 +14,7 @@ function isJavaScript(file: {extname: string;}) {
   return file.extname === '.js';
 }
 
-/** Concatinates all js and html files for the given glob into single html. */
+/** Concatenates all js and html files for the given glob into single html. */
 function concatHeaderFile(
     glob: string|string[], outdir: string): Undertaker.TaskFunction {
   return () => {
@@ -32,7 +32,7 @@ function concatHeaderFile(
   };
 }
 
-/** Concatinates all js and html files for the given glob into single html. */
+/** Concatenates all js and html files for the given glob into single html. */
 export default (globs: SpindleConfig['header'], outdir = DEFAULT_OUT_DIR):
     Undertaker.TaskFunction => {
   // Create output dir

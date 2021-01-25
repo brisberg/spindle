@@ -22,4 +22,4 @@ Still need to make sure that the headerfile is being created.
 
 Update 12/7/20:
 
-Actually the above is not necessary. Gulp can be invoked programatically by simple requesting and then invoking the task directly. There is no need to execute gulp in a child process.
+Actually the above is not necessary. Gulp can be invoked programmatically by simple requesting and then invoking the task directly. There is no need to execute gulp in a child process.
