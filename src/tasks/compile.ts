@@ -17,7 +17,7 @@ function tweego(
     const deps: string[] = [].concat(config.deps);
     const cmd = `\
     export TWEEGO_PATH=${storyformatsPath}
-    go run github.com/tmedwards/tweego --log-files -l \
+    tweego --log-files -l \
     --format=${config.format} \
     --head=${outdir}/head-content.html \
     -o ${outdir}/${config.id}.html \
