@@ -1,9 +1,0 @@
-id: "example-spindle-game"
-version: "1.0.0"
-title: "Example Spindle Game"
-format: "sugarcube-2.31.1"
-description: "This is a sample spindle Twine Project."
-header:
-  - "example-game/header/**/*"
-deps:
-  - "example-game/src"

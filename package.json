@@ -1,6 +1,6 @@
 {
   "name": "@brisberg/spindle",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Opinionated Build Tool for Twine and Tweego",
   "main": "dist/cli.js",
   "scripts": {
@@ -40,13 +40,11 @@
   "homepage": "https://github.com/brisberg/spindle#readme",
   "dependencies": {
     "gulp": "^4.0.2",
-    "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
     "gulp-filter": "^6.0.0",
     "gulp-footer": "^2.0.2",
     "gulp-header": "^2.0.9",
     "gulp-if": "^3.0.0",
-    "js-yaml": "^3.14.0",
     "minimist": "^1.2.5",
     "tslib": "^2.0.3"
   },
@@ -56,7 +54,6 @@
     "@types/gulp-filter": "^3.0.33",
     "@types/gulp-header": "^2.0.0",
     "@types/gulp-if": "^0.0.33",
-    "@types/js-yaml": "^3.12.5",
     "@types/node": "^14.14.6",
     "@types/undertaker": "^1.2.3",
     "ts-node": "^9.0.0",

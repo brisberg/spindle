@@ -1,32 +1,47 @@
-import {exec} from 'child_process';
+import {execFile} from 'child_process';
+import * as fs from 'fs';
 import * as path from 'path';
 import Undertaker from 'undertaker';
-import {DEFAULT_OUT_DIR, SpindleConfig} from '../config';
+import {SpindleConfig} from '../config';
 
-/** Clear Task removes all files from the out directory **/
+/** Compile Task builds the game into `config.out` using Tweego. */
 export default function compile(
-    config: SpindleConfig, outdir = DEFAULT_OUT_DIR): Undertaker.TaskFunction {
-  return tweego(config, outdir);
+    config: SpindleConfig, headFile: string): Undertaker.TaskFunction {
+  return tweego(config, headFile);
 }
 
 /** Execute the Tweego compiler in a child process */
 function tweego(
-    config: SpindleConfig, outdir: string): Undertaker.TaskFunction {
+    config: SpindleConfig, headFile: string): Undertaker.TaskFunction {
   return (done: (error?: any) => void) => {
+    // Bundled story formats are searched after any the user already has.
     const storyformatsPath = path.join(__dirname, '../../../storyformats');
-    const deps: string[] = [].concat(config.deps);
-    const cmd = `\
-    export TWEEGO_PATH=${storyformatsPath}
-    tweego --log-files -l \
-    --format=${config.format} \
-    --head=${outdir}/head-content.html \
-    -o ${outdir}/${config.id}.html \
-    ${deps.join(' ')}
-    `;
-    exec(cmd, (err, stdout, stderr) => {
-      console.log(stdout);
-      console.log(stderr);
-      done(err);
-    });
+    const tweegoPath = [process.env.TWEEGO_PATH, storyformatsPath]
+                           .filter(Boolean)
+                           .join(path.delimiter);
+
+    // Tweego fails if the output directory does not exist.
+    fs.mkdirSync(path.dirname(config.out), {recursive: true});
+
+    const args = [
+      '--log-files',
+      '-l',
+      `--head=${headFile}`,
+      '-o',
+      config.out,
+      ...config.src,
+    ];
+    execFile(
+        'tweego', args, {env: {...process.env, TWEEGO_PATH: tweegoPath}},
+        (err, stdout, stderr) => {
+          if ((err as {code?: unknown} | null)?.code === 'ENOENT') {
+            return done(new Error(
+                'tweego not found on PATH. See the Spindle README for ' +
+                'install instructions.'));
+          }
+          console.log(stdout);
+          console.log(stderr);
+          done(err);
+        });
   }
 }

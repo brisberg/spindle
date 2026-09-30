@@ -1,39 +1,36 @@
 import * as fs from 'fs';
 import gulp from 'gulp';
-import * as yaml from 'js-yaml';
+import * as os from 'os';
+import * as path from 'path';
 
-import {DEFAULT_CONFIG_PATH, DEFAULT_OUT_DIR, parseConfig, SpindleConfig} from './src/config';
+import {loadConfig, SpindleConfig} from './src/config';
 import clearTask from './src/tasks/clear'
 import compileTask from './src/tasks/compile';
 import generateHeader from './src/tasks/header';
 
 const argv = require('minimist')(process.argv.slice(2));
-// console.log(argv)
-const configPath = argv['c'] || DEFAULT_CONFIG_PATH;
 let config: SpindleConfig;
 
 try {
-  const fileContents = fs.readFileSync(configPath, 'utf8');
-  const data = yaml.safeLoad(fileContents);
-  config = parseConfig(data);
+  config = loadConfig(argv['c']);
 } catch (e) {
-  console.error(`Spindle failed to load config '${configPath}': ${e.message}`);
+  console.error(`Spindle config error: ${e.message}`);
   process.exit(1);
 }
 
+// Generated head content is an intermediate file, kept out of the output dir.
+const headFile = path.join(
+    fs.mkdtempSync(path.join(os.tmpdir(), 'spindle-')), 'head-content.html');
 
-// TODO: Pass in out dir from a config
-const genHeader = generateHeader(config.header, DEFAULT_OUT_DIR)
+const genHeader = generateHeader(config.head, headFile);
 
-// TODO: Pass in out dir from a config
-const compile = compileTask(config, DEFAULT_OUT_DIR);
+const compile = compileTask(config, headFile);
 compile.displayName = 'compile';
 compile.description = 'Compiles the game using Tweego'
 
-// TODO: Pass in out dir from a config
-export const clear = clearTask(DEFAULT_OUT_DIR);
+export const clear = clearTask(config.out);
 clear.displayName = 'clear';
-clear.description = 'Removes all files from the output directory'
+clear.description = 'Removes the previous build output'
 
 export const build = gulp.series(genHeader, compile);
 build.displayName = 'build';

@@ -1,13 +1,14 @@
-import {src} from 'gulp';
-import clean from 'gulp-clean';
+import * as fs from 'fs';
 import Undertaker from 'undertaker';
-import {DEFAULT_OUT_DIR} from '../config';
 
-function clear(outdir: string): Undertaker.TaskFunction {
-  return () => src(outdir, {read: false, allowEmpty: true}).pipe(clean());
-}
-
-/** Clear Task removes all files from the out directory */
-export default (outdir = DEFAULT_OUT_DIR): Undertaker.TaskFunction => {
-  return clear(outdir);
+/**
+ * Clear Task removes the previous build output, so a failed build does not
+ * leave a stale game behind. Only the output file is removed, never its
+ * directory, since `out` may point anywhere in the user's repo.
+ */
+export default (outFile: string): Undertaker.TaskFunction => {
+  return (done) => {
+    fs.rmSync(outFile, {force: true});
+    done();
+  };
 }
