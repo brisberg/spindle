@@ -5,5 +5,6 @@
     "esModuleInterop": true,
     "importHelpers": true,
     "outDir": "dist",
-  }
+  },
+  "include": ["cli.js", "gulpfile.ts", "src/**/*.ts"]
 }

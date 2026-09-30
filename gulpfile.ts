@@ -10,14 +10,15 @@ import generateHeader from './src/tasks/header';
 const argv = require('minimist')(process.argv.slice(2));
 // console.log(argv)
 const configPath = argv['c'] || DEFAULT_CONFIG_PATH;
-let config: SpindleConfig|null = null;
+let config: SpindleConfig;
 
 try {
-  let fileContents = fs.readFileSync(configPath, 'utf8');
+  const fileContents = fs.readFileSync(configPath, 'utf8');
   const data = yaml.safeLoad(fileContents);
   config = parseConfig(data);
 } catch (e) {
-  console.log(e);
+  console.error(`Spindle failed to load config '${configPath}': ${e.message}`);
+  process.exit(1);
 }
 
 
