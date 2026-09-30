@@ -68,7 +68,7 @@ Put the config in **either** a `spindle.json` file in your repo root:
     "build": "spindle"
   },
   "devDependencies": {
-    "@brisberg/spindle": "^0.4.0"
+    "@brisberg/spindle": "^0.5.0"
   },
   "spindle": {
     "src": ["src"],
@@ -91,7 +91,33 @@ To use a config file somewhere else, pass `-c <path>`. This skips the search in 
 
 ### Story formats
 
-Spindle bundles Harlowe 3.0.2 and 3.1.0, SugarCube 2.31.1, and Snowman 2.0.2. Tweego picks the format named in your `StoryData` passage. To use other formats or versions, install them anywhere Tweego searches (see the [Tweego docs](https://www.motoslave.net/tweego/docs/)), for example a `storyformats/` folder in your repo or a folder listed in `TWEEGO_PATH`. Spindle adds its bundled formats to `TWEEGO_PATH` rather than replacing it.
+Spindle doesn't include any story formats. Tweego uses the format and version named in your `StoryData` passage, and looks for it in these places:
+
+1. **A `storyformats/` directory in your project (recommended).** Tweego looks in the directory Spindle runs from, which is your project root when you use `npm run`. Commit the format there, so every contributor and your CI build with the same format version:
+
+   ```
+   my-game/
+   ├── .gitattributes
+   ├── package.json
+   ├── src/
+   └── storyformats/
+       └── sugarcube-2.37.3/
+           └── format.js
+   ```
+
+   Formats are large third-party JavaScript files, so GitHub would otherwise report your repo as mostly JavaScript. Mark them as vendored in a `.gitattributes` file at your project root:
+
+   ```gitattributes
+   storyformats/** linguist-vendored
+   ```
+
+   Get `format.js` from the format's release page (e.g. SugarCube's "Twine 2 local" download), or copy it from the `storyformats/` directory included in the [Tweego release zip](https://github.com/tmedwards/tweego/releases).
+
+2. **Next to the `tweego` binary.** The Tweego release zip already includes common formats (SugarCube, Harlowe, Snowman, Chapbook), so installing from the zip works without extra setup. Installing with `go install` doesn't include any formats.
+
+3. **Any directory listed in `TWEEGO_PATH`.** Spindle passes your environment through unchanged.
+
+See the [Tweego docs](https://www.motoslave.net/tweego/docs/) for the full search order. If no matching format is found, Spindle fails and points you here.
 
 ## Usage
 
@@ -102,6 +128,10 @@ yarn spindle
 ```
 
 Spindle deletes the previous output file, then compiles the game. If the build fails, Spindle exits with a non-zero code, so it's safe to use in CI.
+
+## Upgrading from 0.4
+
+Spindle no longer includes story formats. If your game used a bundled format (Harlowe 3.0.2 or 3.1.0, SugarCube 2.31.1, Snowman 2.0.2), add it to a `storyformats/` directory in your project as described in [Story formats](#story-formats). You can also take this chance to move to a newer format version by updating your `StoryData` passage.
 
 ## Upgrading from 0.3 (`spindle.yml`)
 

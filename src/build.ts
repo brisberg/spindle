@@ -5,9 +5,6 @@ import * as path from 'path';
 
 import {SpindleConfig} from './config';
 
-/** Package root, relative to the compiled dist/ directory. */
-const PACKAGE_ROOT = path.join(__dirname, '..');
-
 /** Always inserted at the top of the <head>. */
 const BUILDER_META = '<meta name="build-tool" content="spindle" />\n';
 
@@ -57,14 +54,11 @@ export function buildHead(globs: string[]): string {
   return parts.join('\n');
 }
 
+/** Matches Tweego's errors for missing story formats or search directories. */
+const MISSING_FORMAT_ERROR = /^error: Story format/m;
+
 /** Executes the Tweego compiler in a child process. */
 function tweego(config: SpindleConfig, headFile: string): Promise<void> {
-  // Bundled story formats are searched after any the user already has.
-  const storyformatsPath = path.join(PACKAGE_ROOT, 'storyformats');
-  const tweegoPath = [process.env.TWEEGO_PATH, storyformatsPath]
-                         .filter(Boolean)
-                         .join(path.delimiter);
-
   const args = [
     '--log-files',
     '-l',
@@ -76,8 +70,7 @@ function tweego(config: SpindleConfig, headFile: string): Promise<void> {
 
   return new Promise((resolve, reject) => {
     execFile(
-        'tweego', args, {env: {...process.env, TWEEGO_PATH: tweegoPath}},
-        (err, stdout, stderr) => {
+        'tweego', args, (err, stdout, stderr) => {
           if ((err as {code?: unknown} | null)?.code === 'ENOENT') {
             return reject(new Error(
                 'tweego not found on PATH. See the Spindle README for ' +
@@ -85,6 +78,12 @@ function tweego(config: SpindleConfig, headFile: string): Promise<void> {
           }
           console.log(stdout);
           console.log(stderr);
+          if (err && MISSING_FORMAT_ERROR.test(stderr)) {
+            return reject(new Error(
+                'Tweego could not find your story format. Add it to a ' +
+                'storyformats/ directory in your project (see "Story formats" ' +
+                'in the Spindle README).'));
+          }
           err ? reject(err) : resolve();
         });
   });

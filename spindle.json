@@ -1,5 +1,0 @@
-{
-  "src": ["example-game/src"],
-  "head": ["example-game/header/**/*"],
-  "out": "output/example-spindle-game.html"
-}
