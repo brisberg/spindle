@@ -13,7 +13,7 @@
     "build": "tsc",
     "postbuild": "chmod +x dist/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepack": "yarn run clean && yarn run build",
+    "prepack": "npm run clean && npm run build",
     "example": "cd example-game && node ../dist/cli.js"
   },
   "repository": {

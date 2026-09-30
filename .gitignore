@@ -4,6 +4,3 @@ node_modules/
 # Built output
 output/
 dist/
-
-# Logs
-yarn-error.log

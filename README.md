@@ -35,8 +35,6 @@ My Game
 
 ```bash
 npm install -D @brisberg/spindle
-# or
-yarn add -D @brisberg/spindle
 ```
 
 Requires Node.js 22.17 or later. Spindle has no runtime dependencies.
@@ -123,8 +121,6 @@ See the [Tweego docs](https://www.motoslave.net/tweego/docs/) for the full searc
 
 ```bash
 npx spindle
-# or
-yarn spindle
 ```
 
 Spindle deletes the previous output file, then compiles the game. If the build fails, Spindle exits with a non-zero code, so it's safe to use in CI.
