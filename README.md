@@ -39,9 +39,9 @@ npm install -D @brisberg/spindle
 
 Requires Node.js 22.17 or later. Spindle has no runtime dependencies.
 
-Also requires that the `tweego` binary be installed and on your `PATH`. Either:
-- Download a prebuilt binary from the [Tweego releases](https://github.com/tmedwards/tweego/releases) and add it to your `PATH`, or
-- With [Go](https://go.dev) installed: `go install github.com/tmedwards/tweego@latest` (ensure `$(go env GOPATH)/bin` is on your `PATH`)
+Also requires that the `tweego` binary be installed and on your `PATH`. Download a prebuilt binary from the [Tweego releases](https://github.com/tmedwards/tweego/releases) and put it in a directory on your `PATH` (e.g. `~/.local/bin`). On macOS, you may need to clear the quarantine flag: `xattr -d com.apple.quarantine ~/.local/bin/tweego`.
+
+> **Note:** As of 2026, Tweego has a packaging problem and can't be installed with `go install github.com/tmedwards/tweego@latest`. The repo lives on GitHub, but its internal imports still use the old `bitbucket.org/tmedwards/tweego` module path, so Go resolves an ancient pre-modules tag and the build fails. Use the prebuilt binary instead.
 
 Verify with `tweego --version`.
 
