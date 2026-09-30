@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Spindle config",
+  "description": "How to build a Twine game with Spindle. Story metadata (title, IFID, story format) belongs in your StoryTitle and StoryData passages.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "description": "Path or URL of this schema, for editor validation.",
+      "type": "string"
+    },
+    "src": {
+      "description": "Files or directories of Twee source, passed to Tweego. Tweego also bundles .js and .css files found here.",
+      "oneOf": [
+        {"type": "string"},
+        {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      ]
+    },
+    "head": {
+      "description": "Globs of .html and .js files to insert into the page <head>. .js files are wrapped in <script> tags; other file types are ignored.",
+      "oneOf": [
+        {"type": "string"},
+        {"type": "array", "items": {"type": "string"}}
+      ]
+    },
+    "out": {
+      "description": "Path of the compiled HTML file. Defaults to output/<package name>.html, or output/index.html without a package name. Overridden by --out.",
+      "type": "string"
+    }
+  },
+  "required": ["src"],
+  "additionalProperties": false
+}

@@ -1,6 +1,6 @@
 {
   "name": "@brisberg/spindle",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Opinionated Build Tool for Twine and Tweego",
   "bin": {
     "spindle": "./dist/cli.js"
@@ -29,7 +29,8 @@
     "twine2"
   ],
   "files": [
-    "dist/**/*.js"
+    "dist/**/*.js",
+    "schema.json"
   ],
   "author": "Brandon Risberg",
   "license": "MIT",

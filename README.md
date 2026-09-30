@@ -39,7 +39,9 @@ npm install -D @brisberg/spindle
 
 Requires Node.js 22.17 or later. Spindle has no runtime dependencies.
 
-Also requires that the `tweego` binary be installed and on your `PATH`. Download a prebuilt binary from the [Tweego releases](https://github.com/tmedwards/tweego/releases) and put it in a directory on your `PATH` (e.g. `~/.local/bin`). On macOS, you may need to clear the quarantine flag: `xattr -d com.apple.quarantine ~/.local/bin/tweego`.
+Also requires that the `tweego` binary be installed and on your `PATH`. Download a prebuilt binary from the [Tweego releases](https://github.com/tmedwards/tweego/releases) and put it in a directory on your `PATH` (e.g. `~/.local/bin`).
+
+On macOS, you may need to clear the quarantine flag: `xattr -d com.apple.quarantine ~/.local/bin/tweego`.
 
 > **Note:** As of 2026, Tweego has a packaging problem and can't be installed with `go install github.com/tmedwards/tweego@latest`. The repo lives on GitHub, but its internal imports still use the old `bitbucket.org/tmedwards/tweego` module path, so Go resolves an ancient pre-modules tag and the build fails. Use the prebuilt binary instead.
 
@@ -51,6 +53,7 @@ Put the config in **either** a `spindle.json` file in your repo root:
 
 ```json
 {
+  "$schema": "./node_modules/@brisberg/spindle/schema.json",
   "src": ["src"],
   "head": ["header/**/*"],
   "out": "output/my-game.html"
@@ -84,6 +87,12 @@ Using both at once is an error, so there's never any doubt about which one is in
 | `out` | No | Path of the compiled HTML file. Defaults to `output/<package name>.html`, or `output/index.html` if there is no package name. |
 
 A string may be used in place of a single-item array. Unknown keys are an error, so typos don't go unnoticed.
+
+#### Editor support
+
+Spindle ships a JSON Schema for its config. Add a `$schema` line to `spindle.json`, as in the example above, and editors such as VS Code will offer autocomplete, show descriptions when you hover over a key, and flag invalid config as you type. The path points to the copy in your installed Spindle package, so it always matches the version you have and works offline. It resolves once you've run `npm install`.
+
+The `$schema` key is only for your editor; Spindle ignores it. Editors don't apply it to the `"spindle"` key in `package.json`, which is validated by the schema for `package.json` itself.
 
 To use a config file somewhere else, pass `-c <path>`. This skips the search in `spindle.json` and `package.json`.
 
