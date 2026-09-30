@@ -39,6 +39,8 @@ npm install -D @brisberg/spindle
 yarn add -D @brisberg/spindle
 ```
 
+Requires Node.js 22.17 or later. Spindle has no runtime dependencies.
+
 Also requires that the `tweego` binary be installed and on your `PATH`. Either:
 - Download a prebuilt binary from the [Tweego releases](https://github.com/tmedwards/tweego/releases) and add it to your `PATH`, or
 - With [Go](https://go.dev) installed: `go install github.com/tmedwards/tweego@latest` (ensure `$(go env GOPATH)/bin` is on your `PATH`)

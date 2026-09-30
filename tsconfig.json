@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "declaration": true,
-    "esModuleInterop": true,
-    "importHelpers": true,
+    "target": "ES2022",
+    "module": "commonjs",
+    "rootDir": "src",
     "outDir": "dist",
+    "strict": false,
+    "skipLibCheck": true
   },
-  "include": ["cli.js", "gulpfile.ts", "src/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }

@@ -1,17 +1,19 @@
 {
   "name": "@brisberg/spindle",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Opinionated Build Tool for Twine and Tweego",
-  "main": "dist/cli.js",
+  "bin": {
+    "spindle": "./dist/cli.js"
+  },
+  "engines": {
+    "node": ">=22.17"
+  },
   "scripts": {
     "clean": "rm -rf dist/",
     "build": "tsc",
     "postbuild": "chmod +x dist/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepack": "yarn run clean && yarn run build"
-  },
-  "bin": {
-    "spindle": "./dist/cli.js"
   },
   "repository": {
     "type": "git",
@@ -27,8 +29,6 @@
   ],
   "files": [
     "dist/**/*.js",
-    "dist/**/*.d.ts",
-    "header/**/*.{js,html}",
     "storyformats"
   ],
   "author": "Brandon Risberg",
@@ -38,25 +38,8 @@
     "url": "https://github.com/brisberg/spindle/issues"
   },
   "homepage": "https://github.com/brisberg/spindle#readme",
-  "dependencies": {
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-filter": "^6.0.0",
-    "gulp-footer": "^2.0.2",
-    "gulp-header": "^2.0.9",
-    "gulp-if": "^3.0.0",
-    "minimist": "^1.2.5",
-    "tslib": "^2.0.3"
-  },
   "devDependencies": {
-    "@types/gulp": "^4.0.7",
-    "@types/gulp-concat": "^0.0.32",
-    "@types/gulp-filter": "^3.0.33",
-    "@types/gulp-header": "^2.0.0",
-    "@types/gulp-if": "^0.0.33",
-    "@types/node": "^14.14.6",
-    "@types/undertaker": "^1.2.3",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.5"
+    "@types/node": "^22.18.0",
+    "typescript": "^5.9.0"
   }
 }
