@@ -1,6 +1,6 @@
 # Spindle
 
-Opinionated Build Tool for building [Twine Games](https://twinery.org/). Spindle's purpose is to wrap all all boilerplate for interacting with Twine and provide a "single install" for any game repo.
+Opinionated Build Tool for building [Twine Games](https://twinery.org/). Spindle's purpose is to wrap all boilerplate for interacting with Twine and provide a "single install" for any game repo.
 
 Powered by [Gulp](https://gulpjs.com/) and [Tweego](https://github.com/tmedwards/tweego).
 
