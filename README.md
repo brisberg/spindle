@@ -125,6 +125,17 @@ npx spindle
 
 Spindle deletes the previous output file, then compiles the game. If the build fails, Spindle exits with a non-zero code, so it's safe to use in CI.
 
+| Option | Description |
+|---|---|
+| `-c`, `--config <path>` | Read the config from this file instead of `spindle.json` or `package.json`. |
+| `-o`, `--out <path>` | Write the compiled HTML here, overriding `out` from the config. |
+
+`--out` lets a CI job decide where the game is written without reading your config. Arguments after `--` are appended to your npm script, so this works whatever your `build` script passes to Spindle:
+
+```bash
+npm run build -- --out "$RUNNER_TEMP/site/index.html"
+```
+
 ## Upgrading from 0.4
 
 Spindle no longer includes story formats. If your game used a bundled format (Harlowe 3.0.2 or 3.1.0, SugarCube 2.31.1, Snowman 2.0.2), add it to a `storyformats/` directory in your project as described in [Story formats](#story-formats). You can also take this chance to move to a newer format version by updating your `StoryData` passage.
